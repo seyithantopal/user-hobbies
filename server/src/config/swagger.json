@@ -18,6 +18,10 @@
     {
       "name": "Users",
       "description": "API for users"
+    },
+    {
+      "name": "Hobbies",
+      "description": "API for hobbies"
     }
   ],
   "consumes": [
@@ -98,7 +102,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/UserDeletedResponse"
+              "$ref": "#/definitions/DeleteUserResponse"
             }
           },
           "404": {
@@ -136,6 +140,85 @@
           }
         }
       }
+    },
+    "/hobby/getHobbies": {
+      "get": {
+        "tags": [
+          "Hobbies"
+        ],
+        "summary": "Get all hobbies",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GetHobbyResponse"
+            }
+          },
+          "400": {
+            "description": "Something went wrong during fetching data."
+          }
+        }
+      }
+    },
+    "/hobby/createHobby": {
+      "post": {
+        "tags": [
+          "Hobbies"
+        ],
+        "summary": "Create hobby",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Create hobby",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Hobby"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CreateHobbyResponse"
+            }
+          },
+          "400": {
+            "description": "Something went wrong during creating data."
+          }
+        }
+      }
+    },
+    "/hobby/deleteHobby": {
+      "delete": {
+        "tags": [
+          "Hobbies"
+        ],
+        "summary": "Delete hobby",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "id",
+            "description": "Delete hobby",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DeleteHobbyResponse"
+            }
+          },
+          "404": {
+            "description": "Hobby to be deleted not found."
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -155,6 +238,29 @@
         }
       }
     },
+    "Hobby": {
+      "type": "object",
+      "properties": {
+        "passionLevel": {
+          "type": "string",
+          "enum": [
+            "veryLow",
+            "low",
+            "medium",
+            "high",
+            "veryHigh"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "example": "playing football"
+        },
+        "year": {
+          "type": "integer",
+          "example": 2014
+        }
+      }
+    },
     "GetUserResponse": {
       "properties": {
         "message": {
@@ -171,6 +277,51 @@
               "__v": 0
             }
           ]
+        }
+      }
+    },
+    "HobbyResult": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "example": "61d1d9f6d4be9fab7afdca23"
+        },
+        "passionLevel": {
+          "type": "string",
+          "enum": [
+            "veryLow",
+            "low",
+            "medium",
+            "high",
+            "veryHigh"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "example": "playing football"
+        },
+        "year": {
+          "type": "integer",
+          "example": 2014
+        },
+        "__v": {
+          "type": "integer"
+        }
+      }
+    },
+    "GetHobbyResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "Fetch successful"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/HobbyResult"
+          }
         }
       }
     },
@@ -197,6 +348,25 @@
         },
         "hobby_id": {
           "type": "string"
+        }
+      }
+    },
+    "CreateHobbyResponse": {
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "Hobby created"
+        },
+        "result": {
+          "$ref": "#/definitions/HobbyResult"
+        }
+      }
+    },
+    "DeleteHobbyResponse": {
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "Hobby deleted"
         }
       }
     }

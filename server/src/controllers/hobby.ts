@@ -6,7 +6,7 @@ import hobbySchema from '../models/hobbySchema';
 export const getAllHobbies = (req: Request, res: Response) => {
   hobbySchema.find()
     .exec()
-    .then(hobbies => res.json({ message: 'Fetch successful', results: hobbies }))
+    .then(hobbies => res.status(200).json({ message: 'Fetch successful', results: hobbies }))
     .catch(err => res.status(400).json({ msg: `Error: ${err}` }));
 };
 
