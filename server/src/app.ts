@@ -2,6 +2,8 @@ import express, { Application } from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import { PORT, MONGO } from './config/config'; 
+import swaggerUi from 'swagger-ui-express'
+import * as swaggerDocument from './config/swagger.json';
 import userRouter from './routes/api/v1/user';
 import hobbyRouter from './routes/api/v1/hobby';
 
@@ -14,6 +16,8 @@ mongoose.connect(MONGO.url)
 
 app.use(express.json());
 app.use(cors());
+
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Routes
 app.use('/api/v1/user', userRouter);

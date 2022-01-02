@@ -34,7 +34,6 @@ export const updateUser = (req: Request, res: Response) => {
           if (!result) console.log('There is no hobby updated');
         },
       );
-      res.status(200).json({ message: 'Hobby deleted' });
     } else {
       userSchema.updateOne(
         { _id: id },
@@ -43,8 +42,8 @@ export const updateUser = (req: Request, res: Response) => {
           if (!result) console.log('There is no hobby updated');
         },
       );
-      res.status(200).json({ message: 'Hobby Added' });
     }
+    res.status(200).json({ message: 'User updated' });
   })
   .catch((err) =>
     res.status(404).json({ message: `Error: There is no user to update ${err}` }),

@@ -1,0 +1,204 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "arive TypeScript Node.js REST API",
+    "description": "A minimal and easy to follow example of what you need to create a CRUD style API in NodeJs using TypeScript",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "schemes": [
+    "http"
+  ],
+  "host": "localhost:5000",
+  "basePath": "/api/v1/",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "API for users"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json",
+    "application/xml"
+  ],
+  "paths": {
+    "/user/getUsers": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get all users",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GetUserResponse"
+            }
+          },
+          "400": {
+            "description": "Something went wrong during fetching data."
+          }
+        }
+      }
+    },
+    "/user/createUser": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create user",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Create user",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Something went wrong during creating data."
+          }
+        }
+      }
+    },
+    "/user/deleteUser": {
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Delete user",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "id",
+            "description": "Delete user",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UserDeletedResponse"
+            }
+          },
+          "404": {
+            "description": "User to be deleted not found."
+          }
+        }
+      }
+    },
+    "/user/updateUser": {
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update user",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Update user",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UpdateUserResponse"
+            }
+          },
+          "404": {
+            "description": "User to be updated not found."
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "id": {
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "John"
+        }
+      }
+    },
+    "GetUserResponse": {
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "Fetch successful"
+        },
+        "results": {
+          "type": "array",
+          "example": [
+            {
+              "_id": "61d1d9f6d4be9fab7afdca23",
+              "name": "John",
+              "hobbies": [],
+              "__v": 0
+            }
+          ]
+        }
+      }
+    },
+    "DeleteUserResponse": {
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "User deleted"
+        }
+      }
+    },
+    "UpdateUserResponse": {
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "User updated"
+        }
+      }
+    },
+    "UpdateUser": {
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id"
+        },
+        "hobby_id": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
