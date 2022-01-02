@@ -2,6 +2,8 @@ import express, { Application } from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import { PORT, MONGO } from './config/config'; 
+import userRouter from './routes/api/v1/user';
+import hobbyRouter from './routes/api/v1/hobby';
 
 const app: Application = express();
 const port: string | number = PORT;
@@ -14,5 +16,7 @@ app.use(express.json());
 app.use(cors());
 
 // Routes
+app.use('/api/v1/user', userRouter);
+app.use('/api/v1/hobby', hobbyRouter);
 
 app.listen(port, () => console.log(`Server is running on ${port}`));
