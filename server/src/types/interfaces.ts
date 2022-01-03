@@ -27,3 +27,7 @@ export interface ICreateHobby {
   name: string;
   year: number;
 };
+
+export interface IDeleteHobby {
+  id: string;
+};

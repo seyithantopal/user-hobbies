@@ -12,3 +12,13 @@ export const updateUserValidationSchema = yup.object().shape({
 export const deleteUserValidationSchema = yup.object().shape({
   id: yup.string().required(),
 });
+
+export const createHobbyValidationSchema = yup.object().shape({
+  passionLevel: yup.string().required(),
+  name: yup.string().required(),
+  year: yup.number().required().min(2000).max(new Date().getFullYear())
+});
+
+export const deleteHobbyValidationSchema = yup.object().shape({
+  id: yup.string().required(),
+});
