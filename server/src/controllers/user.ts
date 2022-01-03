@@ -8,7 +8,16 @@ export const getAllUsers = (req: Request, res: Response) => {
   userSchema.find()
   .exec()
   .then(users => res.status(200).json({ message: 'Fetch successful', results: users }))
-  .catch(err => res.status(400).json({ msg: `Error: ${err}` }));
+  .catch(err => res.status(400).json({ message: `Error: ${err}` }));
+};
+
+export const getUserById = (req: Request, res: Response) => {
+  const { id } = req.query;
+  userSchema.findById({ _id: id })
+    .then((user) => {
+      return res.status(200).json({ message: 'Fetch successful', results: user });
+    })
+    .catch((err) => res.status(400).json({ message: `Error: ${err}` }));
 };
 
 export const createUser = (req: Request, res: Response) => {

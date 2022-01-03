@@ -1,7 +1,7 @@
 export interface IUser {
   _id: string;
   name: string;
-  hobbies: IHobby[];
+  hobbies: string[];
 };
 
 export interface IHobby {

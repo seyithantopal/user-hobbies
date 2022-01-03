@@ -4,6 +4,7 @@ import { useTypedSelector } from '../../hooks/useTypeSelector';
 import Users from '../../components/Users';
 import { loadUsers } from '../../store/actions/userActions';
 import Hobbies from '../../components/Hobbies';
+import { loadHobbies } from '../../store/actions/hobbyActions';
 
 const Home: FC = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ const Home: FC = () => {
       }
       return { [id]: !state[id] };
     });
+    dispatch(loadHobbies(id));
   };
 
   useEffect(() => {
