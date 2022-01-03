@@ -1,28 +1,15 @@
 import React, { FC, useState, useRef, useEffect, SyntheticEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { IHobby } from '../../types/interfaces';
-import User from '../User';
-import { createUser } from '../../store/actions/userActions';
+import { createHobby } from '../../store/actions/hobbyActions';
 import Hobby from '../Hobby';
 
-/*type Props = {
-  users: IUser[];
-  onClick: any;
-  isClicked: any
-};*/
+type Props = {
+  hobbies: IHobby[];
+  userId: string | null;
+};
 
-const hobbies: IHobby[] = [
-  { _id: '1', passionLevel: 'Medium', name: 'Playing', year: 2014 },
-  { _id: '2', passionLevel: 'Medium', name: 'Playing', year: 2014 },
-  { _id: '3', passionLevel: 'Medium', name: 'Playing', year: 2014 },
-  { _id: '4', passionLevel: 'Medium', name: 'Playing', year: 2014 },
-  { _id: '5', passionLevel: 'Medium', name: 'Playing', year: 2014 },
-  { _id: '6', passionLevel: 'Medium', name: 'Playing', year: 2014 },
-  { _id: '7', passionLevel: 'Medium', name: 'Playing', year: 2014 },
-  { _id: '8', passionLevel: 'Medium', name: 'Playing', year: 2014 },
-];
-
-const Hobbies: FC = () => {
+const Hobbies: FC<Props> = ({ hobbies, userId }) => {
   const dispatch = useDispatch();
   const [hobbyObject, setHobbyObject] = useState<Partial<IHobby>>({
     passionLevel: '',
@@ -46,8 +33,12 @@ const Hobbies: FC = () => {
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    // dispatch(createUser({ name }));
-    // setName('');
+    dispatch(createHobby(userId, hobbyObject));
+    setHobbyObject({
+      passionLevel: '',
+      name: '',
+      year: 2000
+    });
   };
   
   return (

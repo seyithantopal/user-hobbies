@@ -9,6 +9,7 @@ import { loadHobbies } from '../../store/actions/hobbyActions';
 const Home: FC = () => {
   const dispatch = useDispatch();
   const { users } = useTypedSelector((state) => state.user);
+  const { hobbies } = useTypedSelector((state) => state.hobby);
   
 
   const [isClicked, setIsClicked] = useState<any>({});
@@ -44,7 +45,10 @@ const Home: FC = () => {
           />
         </div>
         <div className='hobbies'>
-          <Hobbies />
+          <Hobbies
+            hobbies={hobbies}
+            userId={selectedUserID}
+          />
           {`Hobbies and selected user id: ${selectedUserID}`}
         </div>
       </div>
