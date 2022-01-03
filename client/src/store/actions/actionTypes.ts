@@ -1,0 +1,7 @@
+const LOAD_USERS = 'LOAD_USERS';
+const CREATE_USER = 'CREATE_USER';
+
+export {
+  LOAD_USERS,
+  CREATE_USER
+};

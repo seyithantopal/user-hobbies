@@ -1,10 +1,15 @@
 import React, { FC, useState, useEffect } from 'react';
 import { IUser, IHobby } from '../../types/interfaces';
+import { useDispatch, useSelector } from 'react-redux';
+import { useTypedSelector } from '../../hooks/useTypeSelector';
 import Users from '../../components/Users';
-import { getUsers } from '../../api';
+import { loadUsers } from '../../store/actions/userActions';
 
 const Home: FC = () => {
-  const [users, setUsers] = useState<IUser[]>([]);
+  const dispatch = useDispatch();
+  const { users } = useTypedSelector((state) => state.user);
+  
+
   const [isClicked, setIsClicked] = useState<any>({});
   const [selectedUserID, setSelectedUserID] = useState<string | null>(null);
   const handleSelectUser = (id: string) => {
@@ -22,11 +27,7 @@ const Home: FC = () => {
   };
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      const { data: { results: users } }: { data: { results: IUser[] } } = await getUsers();
-      setUsers(users);
-    };
-    fetchUsers();
+    dispatch(loadUsers());
   }, []);
   return (
     <div className='homeWrapper'>
