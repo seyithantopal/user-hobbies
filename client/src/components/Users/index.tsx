@@ -1,11 +1,8 @@
-import React, { FC, SyntheticEvent } from 'react';
+import React, { FC, useState, useRef, useEffect, SyntheticEvent } from 'react';
+import { useDispatch } from 'react-redux';
 import { IUser } from '../../types/interfaces';
 import User from '../User';
-
-const handleSubmit = (e: SyntheticEvent) => {
-  e.preventDefault();
-  console.log('clicked');
-};
+import { createUser } from '../../store/actions/userActions';
 
 type Props = {
   users: IUser[];
@@ -14,20 +11,31 @@ type Props = {
 };
 
 const Users: FC<Props> = ({ users, onClick, isClicked }) => {
-  /*const [isClicked, setIsClicked] = useState<any>({});
-  const [selectedID, setSelectedID] = useState<string>('');
-  const handleUserBoxClick = (id: string) => {
-    console.log('id: ', id);
-    setIsClicked((state: any) => ({
-      [id]: !state[id]
-    }));
-  };*/
+  const dispatch = useDispatch();
+  const [name, setName] = useState<string>('');
+  const userListBottomRef = useRef<null | HTMLDivElement>(null);
+
+  useEffect(() => {
+    userListBottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [users]);
+
+
+  const handleSubmit = (e: SyntheticEvent) => {
+    e.preventDefault();
+    dispatch(createUser({ name }));
+    setName('');
+  };
   
   return (
     <div className="usersWrapper">
       <div className="usersForm">
         <form id='form' onSubmit={handleSubmit}>
-          <input type="text" placeholder="Enter user name" />
+          <input
+            onChange={(e) => setName(e.target.value)}
+            type="text"
+            placeholder="Enter user name"
+            value={name}
+          />
         </form>
         <input type="submit" form="form" value="Add" />
       </div>
@@ -40,6 +48,7 @@ const Users: FC<Props> = ({ users, onClick, isClicked }) => {
             key={i}
           />
         ))}
+        <div ref={userListBottomRef} />
       </div>
     </div>
   );
