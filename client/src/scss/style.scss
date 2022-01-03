@@ -18,16 +18,9 @@
 @import 'components/hobbies';
 @import 'components/scrollbar';
 
+
+
 html {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-
-h1 {
-  font: 40px 'Ubuntu Regular';
-  color: $secondary-color;
+  max-width: 800px;
+  margin: 0 auto;
 }

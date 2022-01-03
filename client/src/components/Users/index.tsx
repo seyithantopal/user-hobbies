@@ -28,17 +28,15 @@ const Users: FC<Props> = ({ users, onClick, isClicked }) => {
   
   return (
     <div className="usersWrapper">
-      <div className="usersForm">
-        <form id='form' onSubmit={handleSubmit}>
-          <input
-            onChange={(e) => setName(e.target.value)}
-            type="text"
-            placeholder="Enter user name"
-            value={name}
-          />
-        </form>
-        <input type="submit" form="form" value="Add" />
-      </div>
+      <form id='userForm' className="usersForm" onSubmit={handleSubmit}>
+        <input
+          onChange={(e) => setName(e.target.value)}
+          type="text"
+          placeholder="Enter user name"
+          value={name}
+        />
+        <input type="submit" form="userForm" value="Add" />
+      </form>
       <div className="usersList">
         {users.map((user: IUser, i: number) => (
           <User

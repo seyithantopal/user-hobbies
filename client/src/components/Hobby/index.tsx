@@ -10,9 +10,9 @@ const Hobby: FC<Props> = ({ hobby, onDelete }) => {
   return (
     <>
       <div className="hobbyBox">
-        <div>{hobby.passionLevel}</div>
-        <div>{hobby.name}</div>
-        <div>{hobby.year}</div>
+        <div>{`Passion: ${hobby.passionLevel}`}</div>
+        <div className="hobbyName">{hobby.name}</div>
+        <div className="hobbyYear">{`Since ${hobby.year}`}</div>
         <div className="deleteIcon" onClick={() => onDelete(hobby._id)}>&times;</div>
       </div>
     </>

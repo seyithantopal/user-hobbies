@@ -300,7 +300,6 @@
         "passionLevel": {
           "type": "string",
           "enum": [
-            "veryLow",
             "low",
             "medium",
             "high",
@@ -346,7 +345,6 @@
         "passionLevel": {
           "type": "string",
           "enum": [
-            "veryLow",
             "low",
             "medium",
             "high",

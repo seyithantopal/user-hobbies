@@ -1,9 +1,30 @@
 .homeWrapper {
-  .userHobbies {
-    background-color: #acacac;
+  min-height: 95vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .userHobbiesWrapper {
+    background-color: $COLOR_USER_HOBBIES_BACKGROUND;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
-    height: 250px;
+
+    .title {
+      font: 28px 'Ubuntu Regular';
+      margin-left: 40px;
+    }
+
+    .userHobbies {
+      display: flex;
+      height: 250px;
+
+      & > *:nth-child(1) {
+        flex: 1 1 30%;
+      }
+
+      & > *:nth-child(2) {
+        flex: 1 1 70%;
+      }
+    }
   }
 }

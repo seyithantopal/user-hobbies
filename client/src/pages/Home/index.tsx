@@ -32,19 +32,22 @@ const Home: FC = () => {
   }, [dispatch]);
   return (
     <div className='homeWrapper'>
-      <div className='userHobbies'>
-        <div className='users'>
-          <Users
-            users={users}
-            onClick={handleSelectUser}
-            isClicked={isClicked}
-          />
-        </div>
-        <div className='hobbies'>
-          <Hobbies
-            hobbies={hobbies}
-            userId={selectedUserID}
-          />
+      <div className='userHobbiesWrapper'>
+        <h1 className="title">User Hobbies</h1>
+        <div className="userHobbies">
+          <div className='users'>
+            <Users
+              users={users}
+              onClick={handleSelectUser}
+              isClicked={isClicked}
+            />
+          </div>
+          <div className='hobbies'>
+            <Hobbies
+              hobbies={hobbies}
+              userId={selectedUserID}
+            />
+          </div>
         </div>
       </div>
     </div>

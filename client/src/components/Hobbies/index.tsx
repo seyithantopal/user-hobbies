@@ -12,7 +12,7 @@ type Props = {
 const Hobbies: FC<Props> = ({ hobbies, userId }) => {
   const dispatch = useDispatch();
   const [hobbyObject, setHobbyObject] = useState<Partial<IHobby>>({
-    passionLevel: '',
+    passionLevel: 'low',
     name: '',
     year: 2000
   });
@@ -35,7 +35,7 @@ const Hobbies: FC<Props> = ({ hobbies, userId }) => {
     e.preventDefault();
     dispatch(createHobby(userId, hobbyObject));
     setHobbyObject({
-      passionLevel: '',
+      passionLevel: 'low',
       name: '',
       year: 2000
     });
@@ -47,32 +47,31 @@ const Hobbies: FC<Props> = ({ hobbies, userId }) => {
   
   return (
     <div className="hobbiesWrapper">
-      <div className="hobbiesForm">
-        <form id='hobbyForm' onSubmit={handleSubmit}>
-          <input
-            onChange={(e) => handleHobbyObject(e)}
-            type="text"
-            placeholder="Enter passion level"
-            value={hobbyObject?.passionLevel}
-            data-hobby-type="passionLevel"
-          />
-          <input
-            onChange={(e) => handleHobbyObject(e)}
-            type="text"
-            placeholder="Enter user hobby"
-            value={hobbyObject?.name}
-            data-hobby-type="name"
-          />
-          <input
-            onChange={(e) => handleHobbyObject(e)}
-            type="text"
-            placeholder="Enter year"
-            value={hobbyObject?.year}
-            data-hobby-type="year"
-          />
-        </form>
+      <form id='hobbyForm' className="hobbiesForm" onSubmit={handleSubmit}>
+        <select value={hobbyObject?.passionLevel} onChange={handleHobbyObject} data-hobby-type="passionLevel">
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+          <option value="veryHigh">Very-High</option>
+        </select>
+        <input
+          onChange={handleHobbyObject}
+          type="text"
+          placeholder="Enter user hobby"
+          value={hobbyObject?.name}
+          data-hobby-type="name"
+        />
+        <input
+          onChange={handleHobbyObject}
+          type="number"
+          min={2000}
+          placeholder="Enter year"
+          max={new Date().getFullYear()}
+          value={hobbyObject?.year}
+          data-hobby-type="year"
+        />
         <input type="submit" form="hobbyForm" value="Add" />
-      </div>
+      </form>
       <div className="hobbiesList">
         {hobbies.map((hobby: IHobby, i: number) => (
           <Hobby
