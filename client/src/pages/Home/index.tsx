@@ -1,7 +1,10 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
+import { IUser, IHobby } from '../../types/interfaces';
 import Users from '../../components/Users';
+import { getUsers } from '../../api';
 
 const Home: FC = () => {
+  const [users, setUsers] = useState<IUser[]>([]);
   const [isClicked, setIsClicked] = useState<any>({});
   const [selectedUserID, setSelectedUserID] = useState<string | null>(null);
   const handleSelectUser = (id: string) => {
@@ -17,11 +20,23 @@ const Home: FC = () => {
       return newState;
     });
   };
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const { data: { results: users } }: { data: { results: IUser[] } } = await getUsers();
+      setUsers(users);
+    };
+    fetchUsers();
+  }, []);
   return (
     <div className='homeWrapper'>
       <div className='userHobbies'>
         <div className='users'>
-          <Users onClick={handleSelectUser} isClicked={isClicked} />
+          <Users
+            users={users}
+            onClick={handleSelectUser}
+            isClicked={isClicked}
+          />
         </div>
         <div className='hobbies'>
           {`Hobbies and selected user id: ${selectedUserID}`}

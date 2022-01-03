@@ -1,24 +1,6 @@
 import React, { FC, SyntheticEvent } from 'react';
-import { IHobby } from '../../types/interfaces';
+import { IUser } from '../../types/interfaces';
 import User from '../User';
-
-type UserType = {
-  _id: string;
-  name: string;
-  hobbies: IHobby[];
-};
-
-const users: UserType[] = [
-  { _id: '1', name: 'John', hobbies: [] },
-  { _id: '2', name: 'Peter', hobbies: [] },
-  { _id: '3', name: 'Markus', hobbies: [] },
-  { _id: '4', name: 'John', hobbies: [] },
-  { _id: '5', name: 'Peter', hobbies: [] },
-  { _id: '6', name: 'Markus', hobbies: [] },
-  { _id: '7', name: 'John', hobbies: [] },
-  { _id: '8', name: 'Peter', hobbies: [] },
-  { _id: '9', name: 'Markus', hobbies: [] },
-];
 
 const handleSubmit = (e: SyntheticEvent) => {
   e.preventDefault();
@@ -26,11 +8,12 @@ const handleSubmit = (e: SyntheticEvent) => {
 };
 
 type Props = {
+  users: IUser[];
   onClick: any;
   isClicked: any
 };
 
-const Users: FC<Props> = ({ onClick, isClicked }) => {
+const Users: FC<Props> = ({ users, onClick, isClicked }) => {
   /*const [isClicked, setIsClicked] = useState<any>({});
   const [selectedID, setSelectedID] = useState<string>('');
   const handleUserBoxClick = (id: string) => {
@@ -46,10 +29,10 @@ const Users: FC<Props> = ({ onClick, isClicked }) => {
         <form id='form' onSubmit={handleSubmit}>
           <input type="text" placeholder="Enter user name" />
         </form>
-        <input type="submit" form="form" />
+        <input type="submit" form="form" value="Add" />
       </div>
       <div className="usersList">
-        {users.map((user: UserType, i: number) => (
+        {users.map((user: IUser, i: number) => (
           <User
             user={user}
             onClick={() => onClick(user._id)}
