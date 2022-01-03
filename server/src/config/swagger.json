@@ -51,6 +51,34 @@
         }
       }
     },
+    "/user/getUserById": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get user by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Id of a user",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GetUserResponse"
+            }
+          },
+          "400": {
+            "description": "Something went wrong during fetching data."
+          }
+        }
+      }
+    },
     "/user/createUser": {
       "post": {
         "tags": [
@@ -147,6 +175,34 @@
           "Hobbies"
         ],
         "summary": "Get all hobbies",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GetHobbyResponse"
+            }
+          },
+          "400": {
+            "description": "Something went wrong during fetching data."
+          }
+        }
+      }
+    },
+    "/hobby/getHobbyById": {
+      "get": {
+        "tags": [
+          "Hobbies"
+        ],
+        "summary": "Get hobby by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Id of a hobby",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -367,6 +423,9 @@
         "message": {
           "type": "string",
           "example": "Hobby deleted"
+        },
+        "result": {
+          "$ref": "#/definitions/HobbyResult"
         }
       }
     }
