@@ -5,6 +5,7 @@ export interface IUser {
 };
 
 export interface IHobby {
+  _id: string;
   passionLevel: string;
   name: string;
   year: number;

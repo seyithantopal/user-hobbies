@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../hooks/useTypeSelector';
 import Users from '../../components/Users';
 import { loadUsers } from '../../store/actions/userActions';
+import Hobbies from '../../components/Hobbies';
 
 const Home: FC = () => {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const Home: FC = () => {
 
   useEffect(() => {
     dispatch(loadUsers());
-  }, []);
+  }, [dispatch]);
   return (
     <div className='homeWrapper'>
       <div className='userHobbies'>
@@ -41,6 +42,7 @@ const Home: FC = () => {
           />
         </div>
         <div className='hobbies'>
+          <Hobbies />
           {`Hobbies and selected user id: ${selectedUserID}`}
         </div>
       </div>
