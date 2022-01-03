@@ -1,0 +1,39 @@
+.usersWrapper {
+  height: 100%;
+
+  .usersForm {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+    input[type=text] {
+      width: 100px;
+      height: 25px;
+    }
+  }
+
+  .usersList {
+    padding: 5px 10px 5px 10px;
+    height: calc(100% - 42px);
+    overflow-y: scroll;
+    @extend %scrollbar;
+  }
+
+  .userBox {
+    border: 1px solid #000;
+    text-align: center;
+    font-family: 'Ubuntu Regular';
+    padding: 5px;
+    cursor: pointer;
+
+    &.active {
+      background-color: #eee;
+    }
+
+    
+    &:not(:last-child) {
+      margin-bottom: 0.3rem;
+    }
+  }
+}
