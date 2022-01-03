@@ -1,5 +1,5 @@
-import { CREATE_HOBBY, LOAD_HOBBIES } from './actionTypes';
-import { getUserByIdApi, getHobbyByIdApi, createHobbyApi, updateUserApi } from '../../api';
+import { CREATE_HOBBY, DELETE_HOBBY, LOAD_HOBBIES } from './actionTypes';
+import { getUserByIdApi, getHobbyByIdApi, createHobbyApi, updateUserApi, deleteHobbyApi } from '../../api';
 import { IHobby, IUser } from '../../types/interfaces';
 
 export const loadHobbies = (id: string) => {
@@ -26,5 +26,16 @@ export const createHobby = (userId: string | null, hobbyObject: Partial<IHobby>)
       hobby_id: result._id
     })
     dispatch({ type: CREATE_HOBBY, payload: result });
+  };
+};
+
+export const deleteHobby = (userId: string | null, id: string) => {
+  return async (dispatch: any) => {
+    const { data: { result } } = await deleteHobbyApi({ id });
+    const { data } = await updateUserApi({
+      id: userId,
+      hobby_id: result._id
+    })
+    dispatch({ type: DELETE_HOBBY, payload: result });
   };
 };

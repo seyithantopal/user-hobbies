@@ -38,7 +38,7 @@ export const deleteHobby = (req: Request, res: Response) => {
     if (!hobby) {
       res.status(404).json({ message: 'There is no hobby deleted' });
     } else {
-      res.status(200).json({ message: 'Hobby deleted' });
+      res.status(200).json({ message: 'Hobby deleted', result: hobby });
     }
   });
 };

@@ -15,10 +15,6 @@ const Home: FC = () => {
   const [isClicked, setIsClicked] = useState<any>({});
   const [selectedUserID, setSelectedUserID] = useState<string | null>(null);
   const handleSelectUser = (id: string) => {
-    console.log('id: ', id);
-    /*setIsClicked((state: any) => ({
-      [id]: !state[id]
-    }));*/
     setIsClicked((state: any) => {
       if (!!state[id]) {
         setSelectedUserID(null);
@@ -49,7 +45,6 @@ const Home: FC = () => {
             hobbies={hobbies}
             userId={selectedUserID}
           />
-          {`Hobbies and selected user id: ${selectedUserID}`}
         </div>
       </div>
     </div>

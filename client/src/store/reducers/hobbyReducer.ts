@@ -1,5 +1,5 @@
 import { IAction, IHobby } from '../../types/interfaces';
-import { CREATE_HOBBY, LOAD_HOBBIES } from '../actions/actionTypes';
+import { CREATE_HOBBY, DELETE_HOBBY, LOAD_HOBBIES } from '../actions/actionTypes';
 
 type State = {
   hobbies: IHobby[];
@@ -17,6 +17,11 @@ const hobbyReducer = (state = initialState, action: IAction<IHobby>) => {
       return { ...state, hobbies: action.payload };
     case CREATE_HOBBY:
       return { ...state, hobbies: [...state.hobbies, action.payload] };
+    case DELETE_HOBBY:
+      return {
+        ...state,
+        hobbies: state.hobbies.filter((hobby) => hobby._id !== action.payload._id),
+      };
     default:
       return state;
   }

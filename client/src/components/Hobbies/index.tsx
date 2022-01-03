@@ -1,7 +1,7 @@
 import React, { FC, useState, useRef, useEffect, SyntheticEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { IHobby } from '../../types/interfaces';
-import { createHobby } from '../../store/actions/hobbyActions';
+import { createHobby, deleteHobby } from '../../store/actions/hobbyActions';
 import Hobby from '../Hobby';
 
 type Props = {
@@ -40,6 +40,10 @@ const Hobbies: FC<Props> = ({ hobbies, userId }) => {
       year: 2000
     });
   };
+
+  const handleDeleteHobby = (id: string) => {
+    dispatch(deleteHobby(userId, id));
+  };
   
   return (
     <div className="hobbiesWrapper">
@@ -74,6 +78,7 @@ const Hobbies: FC<Props> = ({ hobbies, userId }) => {
           <Hobby
             hobby={hobby}
             key={i}
+            onDelete={handleDeleteHobby}
           />
         ))}
         <div ref={hobbyListBottomRef} />
