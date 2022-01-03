@@ -1,0 +1,28 @@
+// Fonts
+@import 'base/fonts';
+
+// Variables
+@import 'abstract/variables';
+
+// Mixins
+@import 'abstract/mixins';
+
+// Functions
+@import 'abstract/functions';
+
+// Pages
+@import 'pages/home';
+
+html {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+h1 {
+  font: 40px 'Ubuntu Regular';
+  color: $secondary-color;
+}
