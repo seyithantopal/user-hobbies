@@ -11,7 +11,7 @@ describe('Sample test with React Testing Library', () => {
       name: 'Playing football',
       year: 2014,
     }
-    const { queryAllByText, getByTestId } = render(
+    render(
       <Hobby hobby={hobbyExample} onDelete={() => {}} />
     );
     expect(screen.queryAllByText('Passion: Low').length).toBe(1);
