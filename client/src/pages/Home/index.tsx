@@ -5,12 +5,13 @@ import Users from '../../components/Users';
 import { loadUsers } from '../../store/actions/userActions';
 import Hobbies from '../../components/Hobbies';
 import { loadHobbies } from '../../store/actions/hobbyActions';
+import { IHobby } from '../../types/interfaces';
 
 const Home: FC = () => {
   const dispatch = useDispatch();
   const { users } = useTypedSelector((state) => state.user);
   const { hobbies } = useTypedSelector((state) => state.hobby);
-  
+  const [hobbiesState, setHobbiesState] = useState<IHobby[]>(hobbies);
 
   const [isClicked, setIsClicked] = useState<any>({});
   const [selectedUserID, setSelectedUserID] = useState<string | null>(null);
@@ -26,6 +27,10 @@ const Home: FC = () => {
     });
     dispatch(loadHobbies(id));
   };
+
+  useEffect(() => {
+    setHobbiesState(isClicked[selectedUserID!] ? hobbies : []);
+  }, [hobbies]);
 
   useEffect(() => {
     dispatch(loadUsers());
@@ -44,7 +49,7 @@ const Home: FC = () => {
           </div>
           <div className='hobbies'>
             <Hobbies
-              hobbies={hobbies}
+              hobbies={hobbiesState}
               userId={selectedUserID}
             />
           </div>
