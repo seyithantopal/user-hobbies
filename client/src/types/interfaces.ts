@@ -1,3 +1,5 @@
+import { PassionLevelStrings } from './enums';
+
 export interface IUser {
   _id: string;
   name: string;
@@ -6,7 +8,7 @@ export interface IUser {
 
 export interface IHobby {
   _id: string;
-  passionLevel: string;
+  passionLevel: PassionLevelStrings;
   name: string;
   year: number;
 };

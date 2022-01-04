@@ -37,8 +37,13 @@
       font-family: 'Ubuntu Regular';
       padding: 5px;
 
+      .hobbyPassionLevel {
+        margin-right: auto;
+        width: 150px;
+      }
+
       .hobbyName {
-        margin-left: auto;
+        margin-right: auto;
       }
 
       .hobbyYear {
